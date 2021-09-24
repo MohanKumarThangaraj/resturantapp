@@ -1,0 +1,10 @@
+{
+  "name": "resturantapp",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular"
+}

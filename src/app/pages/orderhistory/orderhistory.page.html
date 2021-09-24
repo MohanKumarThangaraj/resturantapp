@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar style="padding-top: 0px !important; --background: #f82424">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <!-- <ion-title></ion-title> -->
+    <div class="nav_header_title">Order History</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #d2d2d24d">
+  <div style="background: white; padding: 5px 0px">
+    <ion-segment
+      [(ngModel)]="selectedCategory"
+      scrollable
+      style="margin-top: 5px"
+    >
+      <ion-segment-button
+        (click)="segmentChanged(cat.category)"
+        *ngFor="let cat of categories"
+        [value]="cat.category"
+        >{{cat.category}}</ion-segment-button
+      >
+    </ion-segment>
+  </div>
+  <ion-row *ngIf="orderList.length">
+    <ion-card
+      *ngFor="let l of orderList"
+      style="width: 100%; padding: 10px; margin: 5px 10px 0px 10px"
+    >
+      <div class="list_details">
+        <ion-grid class="p0" *ngIf="l">
+          <ion-row>
+            <ion-col size="6" class="p0">
+              <h4 style="font-size: 16px; margin: 5px 0px">
+                <strong>#{{l.id}}</strong>
+              </h4>
+            </ion-col>
+            <ion-col size="6" class="p0 textRight">
+              <h6 style="font-size: 16px; margin: 5px 0px">
+                <strong> &#8377;{{l.totalAmount}}</strong>
+              </h6>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="8" class="p0">
+              <p class="f-12" style="margin: 5px 0px">
+                {{l.orderDate | date}} {{l.orderTime}}
+              </p>
+            </ion-col>
+            <ion-col size="4" class="p0 textRight">
+              <p class="f-12" style="margin: 5px 0px">Delivery</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="8" class="p0">
+              <p
+                *ngIf="l.products.length === 0 || l.products.length === 1"
+                style="margin: 5px 0px"
+              >
+                Item: {{l.products.length}}
+              </p>
+              <p
+                *ngIf="l.products.length !== 0 && l.products.length !== 1"
+                style="margin: 5px 0px"
+              >
+                Items: {{l.products.length}}
+              </p>
+            </ion-col>
+            <ion-col size="4" class="p0 textRight">
+              <ion-button
+                fill="clear"
+                *ngIf="l.orderStatus === 'Placed'"
+                style="
+                  color: red;
+                  text-transform: capitalize;
+                  pointer-events: none;
+                "
+                class="br10 button-outline-md-danger1"
+              >
+                Order {{l.orderStatus}}
+              </ion-button>
+              <ion-button
+                fill="clear"
+                style="text-transform: capitalize"
+                *ngIf="l.orderStatus !== 'Placed'"
+                [ngClass]="l.orderStatus"
+                class="br10 button-outline-md-danger1"
+              >
+                Order {{l.orderStatus}}
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-card>
+  </ion-row>
+  <ion-row *ngIf="!orderList.length">
+    <img
+      style="position: absolute; top: 30%"
+      src="../../../assets/imgs/noorder.png"
+    />
+  </ion-row>
+</ion-content>

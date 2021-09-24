@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "resturantapp",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

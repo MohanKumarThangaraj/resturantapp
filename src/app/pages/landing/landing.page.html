@@ -1,0 +1,232 @@
+<ion-header>
+  <ion-toolbar style="padding-top: 0px !important; --background: #f82424">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-row class="p0">
+      <ion-col size="9" class="p0 dd">
+        <ion-searchbar
+          style="--border-radius: 25px"
+          debounce="1000"
+          class="id13"
+          placeholder="Search for dishes "
+          (ionChange)="getItems($event)"
+          [(ngModel)]="queryText"
+        ></ion-searchbar>
+      </ion-col>
+      <ion-col size="2" class="p0">
+        <button (click)="gocart()" ion-button class="nav_btn floatRight">
+          <ion-icon
+            name="cart"
+            style="font-size: 48px !important; color: white"
+          ></ion-icon>
+          <span class="cart">{{cartService.getCartLength()}}</span>
+        </button>
+        <div class="clear"></div>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #d2d2d24d">
+  <div style="background: white; padding: 5px 0px">
+    <ion-segment [(ngModel)]="type" scrollable style="margin-top: 5px">
+      <ion-segment-button
+        (click)="segmentChanged(cat)"
+        *ngFor="let cat of categories"
+        [value]="cat.category"
+        >{{cat.catName}}</ion-segment-button
+      >
+    </ion-segment>
+  </div>
+  <div *ngIf="!queryText">
+    <div *ngIf="products">
+      <ion-row>
+        <ion-col size="6" *ngFor="let item of products;let index=index;">
+          <!-- src="../../../assets/imgs/defaultimage.png" -->
+          <ion-card class="trending-card pad-5">
+            <img
+              src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg"
+              class="avatar2 lazyload"
+            />
+            <div style="display: -webkit-inline-box; position: relative">
+              <img
+                item-start
+                class="id5 lazyload"
+                src="../../../assets/imgs/veg.png"
+                *ngIf="item.veg === 1"
+              />
+              <img
+                item-start
+                class="id5 lazyload"
+                src="../../../assets/imgs/non-veg.png"
+                *ngIf="item.nonVeg === 1"
+              />
+              <p
+                class="p-l-r-5 textLeft"
+                style="
+                  word-break: normal;
+                  font-family: 'Open Sans', sans-serif;
+                  color: #333;
+                  font-weight: 500;
+                  margin: 0px 0px 0px 15px;
+                  height: 20px;
+                "
+              >
+                {{item.productName | titlecase}}
+              </p>
+            </div>
+            <ion-row>
+              <ion-col class="ion-no-padding" size="12">
+                <p *ngIf="item.oldPrice" class="p-l-r-5 textLeft price-c">
+                  &#8377; {{item.oldPrice }}
+                  <!-- </p> -->
+                  <span *ngIf="item.newPrice" class="p-l-r-5 textLeft price-o">
+                    &#8377; {{item.newPrice }}
+                  </span>
+                </p>
+                <p *ngIf="!item.newPrice" class="p-l-r-5 textLeft price-o">
+                  &#8377; {{item.oldPrice }}
+                </p>
+              </ion-col>
+              <ion-col
+                class="ion-no-padding ion-text-capitalize ion-text-center"
+                size="12"
+              >
+                <p item-end class="ho4" *ngIf="item.count !== 0">
+                  <ion-icon
+                    (click)="remove(item, minus(item.count))"
+                    class="ho5"
+                    name="remove-circle-outline"
+                  ></ion-icon
+                  ><span class="ho6"> {{item.count}}</span>
+                  <ion-icon
+                    class="ho7"
+                    (click)="addtocart(item,pluscount(item.count))"
+                    name="add-circle-outline"
+                  ></ion-icon>
+                </p>
+                <ion-button
+                  *ngIf="item.count === 0"
+                  class="addtocart br10"
+                  fill="outline"
+                  (click)="addtocart(item,pluscount(item.count))"
+                  color="success"
+                  >Add</ion-button
+                >
+              </ion-col>
+            </ion-row>
+            <!-- <div >
+              <div class="card-item-title">
+
+              </div>
+              <div class="card-item-title">
+                             </div>
+            </div> -->
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="!products">
+      <img
+        style="position: absolute; top: 30%"
+        src="https://www.ibellstore.com/images/no-item-found-here.png"
+      />
+    </div>
+  </div>
+  <div *ngIf="queryText">
+    <div *ngIf="searchProductList">
+      <ion-row>
+        <ion-col
+          size="6"
+          *ngFor="let item of searchProductList;let index=index;"
+        >
+          <!-- src="../../../assets/imgs/defaultimage.png" -->
+          <ion-card class="trending-card pad-5">
+            <img
+              src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg"
+              class="avatar2 lazyload"
+            />
+            <div style="display: -webkit-inline-box; position: relative">
+              <img
+                item-start
+                class="id5 lazyload"
+                src="../../../assets/imgs/veg.png"
+                *ngIf="item.veg === 1"
+              />
+              <img
+                item-start
+                class="id5 lazyload"
+                src="../../../assets/imgs/non-veg.png"
+                *ngIf="item.nonVeg === 1"
+              />
+              <p
+                class="p-l-r-5 textLeft"
+                style="
+                  word-break: normal;
+                  font-family: 'Open Sans', sans-serif;
+                  color: #333;
+                  font-weight: 500;
+                  margin: 0px 0px 0px 15px;
+                  height: 20px;
+                "
+              >
+                {{item.productName | titlecase}}
+              </p>
+            </div>
+            <ion-row>
+              <ion-col class="ion-no-padding" size="12">
+                <p *ngIf="item.oldPrice" class="p-l-r-5 textLeft price-c">
+                  &#8377; {{item.oldPrice }}
+                  <!-- </p> -->
+                  <span *ngIf="item.newPrice" class="p-l-r-5 textLeft price-o">
+                    &#8377; {{item.newPrice }}
+                  </span>
+                </p>
+                <p *ngIf="!item.newPrice" class="p-l-r-5 textLeft price-o">
+                  &#8377; {{item.oldPrice }}
+                </p>
+              </ion-col>
+              <ion-col class="ion-no-padding ion-text-capitalize" size="12">
+                <p item-end class="ho4" *ngIf="item.count !== 0">
+                  <ion-icon
+                    (click)="remove(item, minus(item.count))"
+                    class="ho5"
+                    name="remove-circle-outline"
+                  ></ion-icon
+                  ><span class="ho6"> {{item.count}}</span>
+                  <ion-icon
+                    class="ho7"
+                    (click)="addtocart(item,pluscount(item.count))"
+                    name="add-circle-outline"
+                  ></ion-icon>
+                </p>
+                <ion-button
+                  *ngIf="item.count === 0"
+                  class="addtocart br10"
+                  fill="outline"
+                  (click)="addtocart(item,pluscount(item.count))"
+                  color="success"
+                  >Add</ion-button
+                >
+              </ion-col>
+            </ion-row>
+            <!-- <div >
+              <div class="card-item-title">
+
+              </div>
+              <div class="card-item-title">
+                             </div>
+            </div> -->
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="!searchProductList">
+      <img
+        style="position: absolute; top: 30%"
+        src="https://www.ibellstore.com/images/no-item-found-here.png"
+      />
+    </div>
+  </div>
+</ion-content>

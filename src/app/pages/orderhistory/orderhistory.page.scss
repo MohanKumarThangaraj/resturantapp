@@ -1,0 +1,36 @@
+.Completed {
+  color: #4caf50 !important;
+  border: 1px solid #4caf50 !important;
+  pointer-events: none;
+}
+.Placed {
+  pointer-events: none;
+  color: #f44336 !important;
+  border: 0px solid #f44336 !important;
+}
+.Processing {
+  pointer-events: none;
+  color: #ff5722 !important;
+  border: 1px solid #ff5722 !important;
+}
+.Cancelled {
+  pointer-events: none;
+  color: #2196f3 !important;
+  border: 1px solid #2196f3 !important;
+}
+ion-segment-button {
+  border: 1px solid #b3b3b3;
+  border-radius: 40px;
+  margin: 0px 5px;
+  text-transform: capitalize;
+}
+
+.segment-button-checked {
+  color: white;
+  background-color: green;
+  border: 1px solid green;
+  --indicator-color: transparent !important;
+  --indicator-color-checked: transparent !important;
+  --color-hover: white;
+  --color-checked: white;
+}

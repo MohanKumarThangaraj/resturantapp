@@ -1,0 +1,174 @@
+<ion-header>
+  <ion-toolbar style="padding-top: 0px !important; --background: #f82424">
+    <ion-button fill="clear" style="float: left" (click)="back()">
+      <ion-icon
+        slot="start"
+        style="color: white"
+        name="arrow-back-outline"
+      ></ion-icon>
+    </ion-button>
+    <div class="nav_header_title">Your Cart</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed class="grid-bg">
+    <ion-row *ngFor="let l of cartitem;let index = index">
+      <ion-col>
+        <h5 style="font-weight: 500">{{l.productName}}</h5>
+        <h5 class="font-secondary color2">'&#8377;{{l.newPrice}}</h5>
+      </ion-col>
+      <ion-col size="4">
+        <p item-end class="ho4">
+          <ion-icon
+            (click)="remove(l, minus(l.quantity))"
+            class="ho5"
+            name="remove-circle-outline"
+          ></ion-icon
+          ><span class="ho6"> {{l.quantity}}</span>
+          <ion-icon
+            (click)="addtocart(l,pluscount(l.quantity))"
+            name="add-circle-outline"
+            class="ho7"
+          ></ion-icon>
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid fixed class="grid-bg cart_wrapper">
+    <h4>Special Instructions</h4>
+    <ion-input
+      type="text"
+      value=""
+      class="item_textarea"
+      [ngModelOptions]="{standalone: true}"
+      [(ngModel)]="instruction"
+      placeholder="Please add any special instructions"
+    ></ion-input>
+  </ion-grid>
+  <div class="cart_wrapper">
+    <ion-grid fixed class="grid-bg">
+      <div *ngIf="!address" (click)="addaddress()">
+        <ion-row>
+          <ion-col style="display: flex">
+            <ion-avatar item-start style="--border-radius: 0px">
+              <img style="height: 50px" src="assets/imgs/home.svg" />
+            </ion-avatar>
+            <h2 style="font-size: 16px">Add Address</h2>
+            <ion-icon
+              name="arrow-forward-outline"
+              style="margin: 15px 20px; font-size: 25px"
+            ></ion-icon>
+          </ion-col>
+        </ion-row>
+      </div>
+      <div *ngIf="address" class="id10">
+        <ion-row>
+          <ion-col size="12" style="display: flex">
+            <img src="assets/imgs/home.svg" />
+            <h2>Deliver To</h2>
+          </ion-col>
+          <ion-col size="12">
+            <p class="font-secondary">{{address}}</p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-grid>
+    <ion-grid fixed class="grid-bg">
+      <h4>Restaurant Bill</h4>
+      <ion-row>
+        <ion-col col-6 class="textLeft font-secondary"> Item Total </ion-col>
+        <ion-col col-6 class="textRight text-siz f-s-price">
+          &#8377;{{total}}
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="packagingCost !== 0">
+        <ion-col col-6 class="textLeft font-secondary">
+          Packaging Charges
+        </ion-col>
+        <ion-col col-6 class="textRight text-siz f-s-price">
+          &#8377; {{packagingCost }}
+        </ion-col>
+      </ion-row>
+      <ion-row
+        style="
+          border-bottom: 1px dashed #dedede;
+          padding-bottom: 12px;
+          margin-bottom: 12px;
+        "
+      >
+        <ion-col col-6 class="textLeft font-secondary">
+          GST ({{tax}}%)
+        </ion-col>
+        <ion-col col-6 class="textRight text-siz f-s-price">
+          &#8377;{{taxvalue}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="deliveryFee !== 0">
+        <ion-col col-6 class="textLeft font-secondary">
+          Delivery Charges
+        </ion-col>
+        <ion-col col-6 class="textRight text-siz f-s-price">
+          &#8377; {{deliveryFee}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 class="textLeft font-secondary">
+          <strong class="text-siz f-s-price">To Pay</strong>
+        </ion-col>
+        <ion-col col-6 class="textRight text-siz f-s-price">
+          <strong class="text-siz f-s-pricez"> &#8377;{{totalAmount}}</strong>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar (click)="checkout()" style="--background: #f82424">
+    <ion-row>
+      <ion-col size="6"
+        ><h5
+          class="font-secondary"
+          style="
+            margin: 15px 0;
+            font-weight: 600;
+            font-size: 15px;
+            color: white;
+            float: left;
+          "
+        >
+          {{items}}
+          <span
+            style="color: white"
+            *ngIf="items === 1 || items === 0"
+            class="id9"
+            >Item</span
+          ><span
+            style="color: white"
+            *ngIf="items !== 1 && items !== 0"
+            class="id9"
+            >Items</span
+          >
+          &#8377; {{totalAmount}}
+        </h5></ion-col
+      >
+      <ion-col size="6">
+        <ion-button
+          class="addtocart"
+          fill="clear"
+          style="
+            font-size: 14px;
+            font-weight: 600;
+            float: right;
+            --color: white;
+            --background: transparent;
+            border: none;
+          "
+        >
+          PROCEED TO PAY
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

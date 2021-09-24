@@ -1,0 +1,50 @@
+<ion-content style="--background: #131313">
+  <div class="firstbg bg-image"></div>
+  <ion-card>
+    <div class="logotitle ion-text-center">Resturant</div>
+    <ion-list>
+      <div>
+        <form novalidate [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="item">
+            <label>Username</label>
+            <ion-input
+              formControlName="username"
+              class="form-line-active"
+              type="text"
+              placeholder="Enter Username"
+              name="username"
+            ></ion-input>
+          </div>
+          <div class="item">
+            <label>Password</label>
+            <ion-input
+              formControlName="password"
+              class="form-line-active"
+              type="password"
+              placeholder="Enter Password"
+              name="password"
+            >
+            </ion-input>
+          </div>
+          <div class="">
+            <label
+              style="color: #6ed3f1; float: right; padding: 15px 0px"
+              [routerLink]="['/forgotpassword']"
+              >forgot password ?</label
+            >
+          </div>
+          <div style="display: inline-block; width: 100%">
+            <ion-button type="submit" class="nosdw" expand="block"
+              >Login</ion-button
+            >
+          </div>
+        </form>
+      </div>
+    </ion-list>
+    <div style="text-align: center">
+      <p *ngIf="showError" style="color: red">
+        Login Failed,enter valid login details
+      </p>
+    </div>
+  </ion-card>
+</ion-content>

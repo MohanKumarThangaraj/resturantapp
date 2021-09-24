@@ -1,0 +1,24 @@
+ion-segment-button {
+  border: 1px solid #b3b3b3;
+  border-radius: 40px;
+  margin: 0px 5px;
+  text-transform: capitalize;
+}
+
+.segment-button-checked {
+  color: white;
+  background-color: green;
+  border: 1px solid green;
+  --indicator-color: transparent !important;
+  --indicator-color-checked: transparent !important;
+  --color-hover: white;
+  --color-checked: white;
+}
+.avatar2 {
+  /*  width: 140px !important;
+  height: 120px !important;*/
+  margin-left: auto !important;
+  margin-right: auto !important;
+  height: 120px;
+  width: 160px;
+}
