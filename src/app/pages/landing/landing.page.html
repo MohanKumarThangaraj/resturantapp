@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar style="padding-top: 0px !important; --background: #f82424">
+  <ion-toolbar style="padding-top: 0px !important; --background: #fff">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -18,7 +18,7 @@
         <button (click)="gocart()" ion-button class="nav_btn floatRight">
           <ion-icon
             name="cart"
-            style="font-size: 48px !important; color: white"
+            style="font-size: 48px !important; color: #b3b3b3"
           ></ion-icon>
           <span class="cart">{{cartService.getCartLength()}}</span>
         </button>
@@ -28,8 +28,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="--background: #d2d2d24d">
-  <div style="background: white; padding: 5px 0px">
+<ion-content style="--background: #eee">
+  <div style="background: transparent; padding: 5px 0px">
     <ion-segment [(ngModel)]="type" scrollable style="margin-top: 5px">
       <ion-segment-button
         (click)="segmentChanged(cat)"

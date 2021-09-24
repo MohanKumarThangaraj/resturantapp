@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar style="padding-top: 0px !important; --background: #f82424">
+  <ion-toolbar style="padding-top: 0px !important; --background: #fff">
     <ion-button fill="clear" style="float: left" (click)="back()">
       <ion-icon
         slot="start"
-        style="color: white"
+        style="color: #b3b3b3"
         name="arrow-back-outline"
       ></ion-icon>
     </ion-button>
@@ -11,7 +11,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="--background: #eee">
   <ion-grid fixed class="grid-bg">
     <ion-row *ngFor="let l of cartitem;let index = index">
       <ion-col>
@@ -125,7 +125,7 @@
   </div>
 </ion-content>
 <ion-footer>
-  <ion-toolbar (click)="checkout()" style="--background: #f82424">
+  <ion-toolbar (click)="checkout()" style="--background: #dc001d">
     <ion-row>
       <ion-col size="6"
         ><h5
@@ -134,18 +134,18 @@
             margin: 15px 0;
             font-weight: 600;
             font-size: 15px;
-            color: white;
+            color: #fff;
             float: left;
           "
         >
           {{items}}
           <span
-            style="color: white"
+            style="color: #fff"
             *ngIf="items === 1 || items === 0"
             class="id9"
             >Item</span
           ><span
-            style="color: white"
+            style="color: #fff"
             *ngIf="items !== 1 && items !== 0"
             class="id9"
             >Items</span
@@ -161,7 +161,7 @@
             font-size: 14px;
             font-weight: 600;
             float: right;
-            --color: white;
+            --color: #fff;
             --background: transparent;
             border: none;
           "

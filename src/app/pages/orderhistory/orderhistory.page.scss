@@ -5,8 +5,8 @@
 }
 .Placed {
   pointer-events: none;
-  color: #f44336 !important;
-  border: 0px solid #f44336 !important;
+  color: #dc001d !important;
+  border: 0px solid #dc001d !important;
 }
 .Processing {
   pointer-events: none;
@@ -23,6 +23,7 @@ ion-segment-button {
   border-radius: 40px;
   margin: 0px 5px;
   text-transform: capitalize;
+  color: #b3b3b3;
 }
 
 .segment-button-checked {

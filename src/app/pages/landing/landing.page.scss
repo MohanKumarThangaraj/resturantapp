@@ -3,6 +3,7 @@ ion-segment-button {
   border-radius: 40px;
   margin: 0px 5px;
   text-transform: capitalize;
+  color: #b3b3b3;
 }
 
 .segment-button-checked {
@@ -21,4 +22,11 @@ ion-segment-button {
   margin-right: auto !important;
   height: 120px;
   width: 160px;
+}
+
+.id13 {
+  background: transparent !important;
+  --box-shadow: none;
+  border: 1px solid #b3b3b3;
+  border-radius: 25px;
 }

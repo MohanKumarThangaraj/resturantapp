@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar style="padding-top: 0px !important; --background: #f82424">
+  <ion-toolbar style="padding-top: 0px !important; --background: #fff">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -8,8 +8,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="--background: #d2d2d24d">
-  <div style="background: white; padding: 5px 0px">
+<ion-content style="--background: #eee">
+  <div style="background: #eee; padding: 5px 0px">
     <ion-segment
       [(ngModel)]="selectedCategory"
       scrollable
@@ -23,7 +23,7 @@
       >
     </ion-segment>
   </div>
-  <ion-row *ngIf="orderList.length">
+  <ion-row *ngIf="orderList.length" style="margin-bottom: 16px">
     <ion-card
       *ngFor="let l of orderList"
       style="width: 100%; padding: 10px; margin: 5px 10px 0px 10px"
