@@ -54,6 +54,7 @@
     "@typescript-eslint/eslint-plugin": "4.16.1",
     "@typescript-eslint/parser": "4.16.1",
     "cordova-android": "^9.1.0",
+    "cordova-browser": "^6.0.0",
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-dialogs": "^2.0.2",
@@ -99,7 +100,8 @@
       "cordova-plugin-nativegeocoder": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

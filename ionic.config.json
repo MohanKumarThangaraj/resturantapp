@@ -1,5 +1,5 @@
 {
-  "name": "resturantapp",
+  "name": "retroKitchen",
   "integrations": {
     "capacitor": {
       "enabled": false

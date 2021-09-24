@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { OrderService } from 'src/app/services/order.service';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private toast: ToastService,
-    public storage: NativeStorage
+    public storage: NativeStorage,
+    private orderService: OrderService
   ) {}
 
   ngOnInit() {}
@@ -28,18 +30,17 @@ export class LoginPage implements OnInit {
       // debugger;
       const loginData = this.loginForm.getRawValue();
       const options = {
-        orgname: loginData.org,
+        username: loginData.username,
       };
       this.toast.showLoader(true);
-      this.gotohome();
+      localStorage.setItem('userdata', JSON.stringify(options));
+      localStorage.setItem('login', 'true');
+      this.orderService.gotohome();
       this.toast.hideLoader();
     } else {
       // debugger;
       this.toast.showToast('Failed', 'Enter valid Login Credentials');
       this.showError = true;
     }
-  }
-  gotohome() {
-    this.router.navigate(['/landing']);
   }
 }

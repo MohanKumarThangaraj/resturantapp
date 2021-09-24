@@ -117,18 +117,17 @@ export class CartPage implements OnInit {
         'The maximum order value should be ₹' + this.maximumorder
       );
     } else {
-      // if (this.address) {
-      this.cartService.instruction = this.instruction;
-      this.orderService.addOrder(this.cartitem);
-      // } else {
-      //   this.cartService.alert('please add address');
-      // }
+      if (this.address) {
+        this.cartService.instruction = this.instruction;
+        this.orderService.addOrder(this.cartitem);
+      } else {
+        this.cartService.alert('please add address');
+      }
     }
   }
 
   back() {
     this.router.navigate(['/landing']);
-    // this.navCtrl.pop();
   }
 
   cancel() {
@@ -157,10 +156,6 @@ export class CartPage implements OnInit {
     this.locationService.getLocation();
     this.locationService.address.subscribe((response) => {
       console.log(response);
-      // eslint-disable-next-line max-len
-      // const s =
-      //   '{"latitude":11.205769199999999,"longitude":78.2219379,"countryCode":"IN","countryName":"India","postalCode":"637002","administrativeArea":"Tamil Nadu","subAdministrativeArea":"Namakkal","locality":"","subLocality":"","thoroughfare":"Way to Salapalayam","subThoroughfare":"","areasOfInterest":["Way to Salapalayam"]}';
-      // const temp = JSON.parse(s);
       const temp = JSON.parse(response);
       console.log(temp);
       this.address =
@@ -175,22 +170,6 @@ export class CartPage implements OnInit {
         temp.postalCode +
         '.';
     });
-    // console.log(this.address);
-    // if (data) {
-    //   this.address = data;
-    //   const distance = this.distance(this.resturant.latitude, this.resturant.longitude, data.lattitude, data.longitude);
-    //   this.distancevalue = distance;
-    //   console.log(distance);
-    //     if (this.general_setting.max_delivery_distance > distance) {
-    //       this.deliveryFeeCalculation();
-    //       localStorage.cusaddressId = this.address.name;
-    //     }
-    //     else {
-    //       this.address = [];
-    //       localStorage.cusaddressId = '';
-    //       this.alert('Sorry! We do serve there yet');
-    //     }
-    // }
   }
 
   distance(lat1, lon1, lat2, lon2) {

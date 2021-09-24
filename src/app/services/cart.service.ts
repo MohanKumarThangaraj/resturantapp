@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/prefer-for-of */
 import { Injectable } from '@angular/core';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { AlertController, LoadingController } from '@ionic/angular';
 
 export class MenuItem {
@@ -77,7 +76,6 @@ export class CartService {
   time: string;
   instruction: string;
   constructor(
-    // public storage: NativeStorage,
     public loadingController: LoadingController,
     public alertCtrl: AlertController
   ) {
@@ -92,14 +90,6 @@ export class CartService {
     } else {
       return (this.list = JSON.parse(val));
     }
-    // this.storage.getItem('cartItems').then((val) => {
-    //   if (val === null || val === undefined) {
-    //     this.list = [];
-    //     return this.list;
-    //   } else {
-    //     return (this.list = val);
-    //   }
-    // });
   }
 
   getAllCartItems() {
@@ -135,7 +125,6 @@ export class CartService {
           this.changeCart();
           return true;
         } else {
-          // if (!isExists) {
           this.list.push(
             new CartItem(
               quantity,
@@ -151,7 +140,6 @@ export class CartService {
           );
           this.changeCart();
           return true;
-          // }
         }
       }
     } else {
@@ -177,7 +165,6 @@ export class CartService {
 
   changeCart() {
     localStorage.setItem('cartItems', JSON.stringify(this.list));
-    // this.storage.setItem('cartItems', this.list);
   }
   addCartItem(item: MenuItem, quantity: number, items) {
     this.list.map((cartItem, index) => {
@@ -214,10 +201,6 @@ export class CartService {
   }
 
   emptyCart() {
-    // for (let i = 0; i < this.list.length; i++) {
-    //   this.list.splice(i, 1);
-    //   i--;
-    // }
     this.list = [];
     localStorage.removeItem('cartItems');
   }
@@ -236,7 +219,6 @@ export class CartService {
       length += element.quantity;
     });
     return length;
-    // this.cartitems = length
   }
 
   getGrandTotal(): number {

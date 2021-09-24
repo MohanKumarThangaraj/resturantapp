@@ -13,8 +13,7 @@ export class ToastService {
   loader = null;
   constructor(
     private toast: ToastController,
-    private loadingController: LoadingController,
-    private modalController: ModalController
+    private loadingController: LoadingController
   ) {}
 
   showToast(head: string, message: string, time = 2000) {

@@ -1,49 +1,72 @@
-<ion-content
-  style="
-    --background: url(https://i.pinimg.com/736x/e6/7d/af/e67daf68a6e8f6d4a9283cb7d64b098c.jpg);
-  "
->
-  <ion-card style="margin-top: 50%; opacity: 0.7">
-    <div style="text-align: center; color: black; margin: 10px auto 0px">
-      <ion-title>Register</ion-title>
-    </div>
-    <form>
-      <ion-item lines="full">
-        <ion-label position="floating">First name</ion-label>
-        <ion-input type="text" required></ion-input>
-      </ion-item>
-
-      <ion-item lines="full">
-        <ion-label position="floating">Last name</ion-label>
-        <ion-input type="text" required></ion-input>
-      </ion-item>
-
-      <ion-item lines="full">
-        <ion-label position="floating">Email</ion-label>
-        <ion-input type="text" required></ion-input>
-      </ion-item>
-
-      <ion-item lines="full">
-        <ion-label position="floating">Password</ion-label>
-        <ion-input type="password" required></ion-input>
-      </ion-item>
-
-      <ion-row>
-        <ion-col>
-          <ion-button
-            type="submit"
-            color="danger"
-            expand="block"
-            (click)="register()"
-            >Sign Up</ion-button
-          >
-          <div style="padding: 0px 5px">
-            <p style="float: left">
-              <a [routerLink]="['/login']" class="small-text">Back to Login</a>
-            </p>
+<ion-content style="--background: #131313">
+  <div class="firstbg bg-image"></div>
+  <ion-card>
+    <div class="logotitle ion-text-center">RetroKitchen</div>
+    <ion-list>
+      <div>
+        <form novalidate [formGroup]="registrationForm" (ngSubmit)="register()">
+          <div class="item">
+            <label>Username</label>
+            <ion-input
+              formControlName="username"
+              class="form-line-active"
+              type="text"
+              placeholder="Enter Username"
+              name="username"
+            ></ion-input>
           </div>
-        </ion-col>
-      </ion-row>
-    </form>
+          <div class="item">
+            <label>Email</label>
+            <ion-input
+              formControlName="email"
+              class="form-line-active"
+              type="email"
+              placeholder="Enter Email"
+              name="email"
+            >
+            </ion-input>
+          </div>
+          <div class="item">
+            <label>Mobile Number</label>
+            <ion-input
+              formControlName="mobile"
+              class="form-line-active"
+              type="number"
+              placeholder="Enter Mobile No"
+              name="mobile"
+            >
+            </ion-input>
+          </div>
+          <div class="item">
+            <label>Password</label>
+            <ion-input
+              formControlName="password"
+              class="form-line-active"
+              type="password"
+              placeholder="Enter Password"
+              name="password"
+            >
+            </ion-input>
+          </div>
+          <div class="">
+            <label
+              style="color: #6ed3f1; float: right; padding: 15px 0px"
+              [routerLink]="['/login']"
+              >Back to login</label
+            >
+          </div>
+          <div style="display: inline-block; width: 100%">
+            <ion-button type="submit" class="nosdw" expand="block"
+              >Register</ion-button
+            >
+          </div>
+        </form>
+      </div>
+    </ion-list>
+    <div style="text-align: center">
+      <p *ngIf="showError" style="color: red">
+        Registration Failed,enter valid login details
+      </p>
+    </div>
   </ion-card>
 </ion-content>

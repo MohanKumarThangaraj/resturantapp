@@ -1,0 +1,69 @@
+.firstbg {
+  height: 250px;
+}
+@media screen and (max-width: 1024px) {
+  .firstbg {
+    height: 400px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .firstbg {
+    height: 250px;
+  }
+}
+ion-card {
+  // margin-top: -130px;
+  box-shadow: 1px 3px 8px rgba(12, 12, 12, 0.09019607843137255);
+  border-radius: 8px;
+}
+@media screen and (max-width: 1024px) {
+  ion-card {
+    margin: 150px;
+    background: white;
+    // margin-top: -130px;
+  }
+}
+@media screen and (max-width: 600px) {
+  ion-card {
+    margin: 23px;
+    // margin-top: -130px;
+  }
+}
+.logotitle {
+  background: #e8ebf0;
+  padding: 10px 0px 10px;
+}
+
+ion-list {
+  padding: 25px;
+  .item {
+    margin-bottom: 10px;
+    ion-input {
+      border: 1px solid #d2d0d0;
+      border-radius: 3px;
+      margin: 5px 0px;
+      --padding-top: 13px;
+      --padding-bottom: 13px;
+    }
+    .form-line-active.has-focus {
+      border: 0.4px solid #6ed3f1 !important;
+    }
+
+    label,
+    ion-input {
+      color: #000;
+      font-weight: 400;
+    }
+  }
+}
+
+.bg-image {
+  background: url(../../../assets/imgs/bglogin.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.forgot-password {
+  float: right;
+  color: red;
+}

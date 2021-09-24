@@ -111,4 +111,7 @@ export class OrderService {
         });
       });
   }
+  gotohome() {
+    this.router.navigate(['/landing']);
+  }
 }

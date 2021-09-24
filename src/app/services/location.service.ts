@@ -6,7 +6,6 @@ import {
   NativeGeocoderOptions,
 } from '@ionic-native/native-geocoder/ngx';
 import { BehaviorSubject } from 'rxjs';
-import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root',
@@ -29,12 +28,6 @@ export class LocationService {
       .catch((error) => {
         console.log('Error getting location', error);
       });
-    //  const watch = this.geolocation.watchPosition();
-    //  watch.subscribe((data) => {
-    //   // data can be a set of coordinates, or an error (if an error occurred).
-    //   // data.coords.latitude
-    //   // data.coords.longitude
-    //  });
   }
   getAddress(lat, long) {
     const options: NativeGeocoderOptions = {

@@ -1,7 +1,7 @@
 <ion-content style="--background: #131313">
   <div class="firstbg bg-image"></div>
   <ion-card>
-    <div class="logotitle ion-text-center">Resturant</div>
+    <div class="logotitle ion-text-center">RetroKitchen</div>
     <ion-list>
       <div>
         <form novalidate [formGroup]="loginForm" (ngSubmit)="login()">
@@ -31,6 +31,11 @@
               style="color: #6ed3f1; float: right; padding: 15px 0px"
               [routerLink]="['/forgotpassword']"
               >forgot password ?</label
+            >
+            <label
+              style="color: #6ed3f1; float: left; padding: 15px 0px"
+              [routerLink]="['/register']"
+              >New User ?</label
             >
           </div>
           <div style="display: inline-block; width: 100%">
