@@ -22,14 +22,17 @@ export class AppComponent implements OnInit {
     if (login) {
       console.log(login);
       console.log(JSON.parse(login));
-    }
-    let temp: any;
-    temp = localStorage.getItem('userdata');
-    if (temp) {
-      temp = JSON.parse(temp);
-      this.username = temp.username;
-      this.email = temp.email;
-      this.mobile = temp.mobile;
+      let temp: any;
+      temp = localStorage.getItem('userdata');
+      if (temp) {
+        temp = JSON.parse(temp);
+        this.username = temp.username;
+        this.email = temp.email;
+        this.mobile = temp.mobile;
+      }
+      this.router.navigate(['/landing']);
+    } else {
+      this.router.navigate(['/login']);
     }
   }
   openPage(flag) {

@@ -32,11 +32,11 @@ export class LoginPage implements OnInit {
       const options = {
         username: loginData.username,
       };
-      this.toast.showLoader(true);
+      // this.toast.showLoader(true);
       localStorage.setItem('userdata', JSON.stringify(options));
       localStorage.setItem('login', 'true');
       this.orderService.gotohome();
-      this.toast.hideLoader();
+      // this.toast.hideLoader();
     } else {
       // debugger;
       this.toast.showToast('Failed', 'Enter valid Login Credentials');

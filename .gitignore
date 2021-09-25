@@ -72,3 +72,5 @@ www/
 plugins/
 simple.bat
 dnd/
+*.zip
+platforms/android/app/src/main/assets/www/index.html

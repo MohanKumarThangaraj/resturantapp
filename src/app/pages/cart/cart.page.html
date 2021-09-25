@@ -16,7 +16,7 @@
     <ion-row *ngFor="let l of cartitem;let index = index">
       <ion-col>
         <h5 style="font-weight: 500">{{l.productName}}</h5>
-        <h5 class="font-secondary color2">'&#8377;{{l.newPrice}}</h5>
+        <h5 class="font-secondary color2">&#8377;{{l.newPrice}}</h5>
       </ion-col>
       <ion-col size="4">
         <p item-end class="ho4">
@@ -48,7 +48,7 @@
   </ion-grid>
   <div class="cart_wrapper">
     <ion-grid fixed class="grid-bg">
-      <div *ngIf="!address" (click)="addaddress()">
+      <div *ngIf="!address" (click)="getLocation()">
         <ion-row>
           <ion-col style="display: flex">
             <ion-avatar item-start style="--border-radius: 0px">
@@ -65,8 +65,10 @@
       <div *ngIf="address" class="id10">
         <ion-row>
           <ion-col size="12" style="display: flex">
-            <img src="assets/imgs/home.svg" />
-            <h2>Deliver To</h2>
+            <ion-avatar item-start style="--border-radius: 0px">
+              <img style="height: 50px" src="assets/imgs/home.svg" />
+            </ion-avatar>
+            <h2 style="font-size: 16px">Deliver To</h2>
           </ion-col>
           <ion-col size="12">
             <p class="font-secondary">{{address}}</p>

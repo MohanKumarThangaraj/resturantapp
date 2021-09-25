@@ -151,25 +151,58 @@ export class CartPage implements OnInit {
     this.cartService.totalAmount = this.totalAmount;
     this.cartService.taxvalue = this.taxvalue;
   }
-
-  addaddress() {
-    this.locationService.getLocation();
-    this.locationService.address.subscribe((response) => {
-      console.log(response);
-      const temp = JSON.parse(response);
-      console.log(temp);
-      this.address =
-        temp.locality +
-        ',' +
-        temp.sublocality +
-        ',' +
-        temp.subAdministrativeArea +
-        ',' +
-        temp.administrativeArea +
-        ',' +
-        temp.postalCode +
-        '.';
-    });
+  async getLocation() {
+    // this.address = undefined;
+    await this.locationService.getLocation().then(
+      async (response) => {
+        if (response) {
+          await this.addaddress(response);
+        } else {
+          this.cartService.alert(
+            'could not add address at the moment please try later'
+          );
+        }
+      },
+      (e) => {
+        this.cartService.alert(
+          'could not get location at the moment please try later'
+        );
+      }
+    );
+  }
+  async addaddress(data) {
+    await this.locationService.getAddress(data.lat, data.long).then(
+      async (response) => {
+        if (response) {
+          const temp = response[0];
+          console.log(temp);
+          this.address =
+            temp.subThoroughfare +
+            ',' +
+            temp.thoroughfare +
+            ',' +
+            temp.subLocality +
+            ',' +
+            temp.locality +
+            ',' +
+            temp.subAdministrativeArea +
+            ',' +
+            // temp.administrativeArea +
+            // ',' +
+            temp.postalCode +
+            '.';
+        } else {
+          this.cartService.alert(
+            'could not add address at the moment please try later'
+          );
+        }
+      },
+      (e) => {
+        this.cartService.alert(
+          'could not add address at the moment please try later'
+        );
+      }
+    );
   }
 
   distance(lat1, lon1, lat2, lon2) {
